@@ -1,7 +1,6 @@
 // import { getAllData } from "@/functions/prevBuildUtilities";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import getAllData from '../functions/prevBuildUtilities'
-import siteData from "../data/siteData.json";
 import { useRouter } from "next/router";
 const SearchContext = createContext(null);
 
