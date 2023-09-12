@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/background-media-blocks",
+	"version": "0.1.0",
+	"title": "Background Media Blocks",
+	"category": "widgets",
+	"icon": "media-video",
+	"description": "Background Media block WHW",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"media": {
+			"type": "object"
+		}
+	},
+	"textdomain": "background-meidia-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

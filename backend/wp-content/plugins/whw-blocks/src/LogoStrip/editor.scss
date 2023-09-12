@@ -1,0 +1,20 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-whw-blocks {
+	border: 1px dotted #f00;
+}
+.hero-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+.callout-image {
+	margin-top: 120px;
+}
+.container {
+	max-width: 700px;
+	margin: 0 auto;
+}

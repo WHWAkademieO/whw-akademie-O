@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/form-block",
+  "version": "0.1.0",
+  "title": "Form Blocks",
+  "category": "widgets",
+  "icon": "forms",
+  "description": "Form block WHW",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "__typename": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  },
+  "textdomain": "form-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

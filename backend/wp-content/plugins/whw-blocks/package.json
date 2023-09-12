@@ -1,0 +1,29 @@
+{
+	"name": "whw-blocks",
+	"version": "0.1.0",
+	"description": "Example block scaffolded with Create Block tool.",
+	"author": "The WordPress Contributors",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start",
+		"build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules --include-path ./packages src packages node_modules -o src --recursive --watch",
+		"watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules --include-path ./packages -o src --watch"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.9.0"
+	},
+	"dependencies": {
+		"axios": "^1.4.0",
+		"clsx": "^2.0.0",
+		"node-sass-chokidar": "^2.0.0",
+		"react-movable": "^3.0.4",
+		"react-multi-select-component": "^4.3.4"
+	}
+}

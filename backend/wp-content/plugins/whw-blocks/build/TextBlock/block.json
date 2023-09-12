@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/text-blocks",
+  "version": "0.1.0",
+  "title": "Text Blocks",
+  "category": "widgets",
+  "icon": "format-quote",
+  "description": "Text block WHW",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "selector": ".callout-title"
+    },
+    "level": {
+      "type": "number",
+      "default": 2
+    },
+    "content": {
+      "type": "string",
+      "selector": ".callout-content"
+    },
+    "alignment": {
+      "type": "string"
+    },
+    "dot": {
+      "type": "boolean"
+    }
+  },
+  "textdomain": "text-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

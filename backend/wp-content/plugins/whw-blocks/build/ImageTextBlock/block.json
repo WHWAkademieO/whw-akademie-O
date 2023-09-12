@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/image-text-blocks",
+  "version": "0.1.0",
+  "title": "Image Text Blocks",
+  "category": "widgets",
+  "icon": "format-image",
+  "description": "Image Text block WHW",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "selector": ".callout-title"
+    },
+    "content": {
+      "type": "string",
+      "selector": ".callout-content"
+    },
+    "reverse": {
+      "type": "boolean"
+    },
+    "backgroundGradient": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array"
+    },
+    "cta": {
+      "type": "object",
+      "default": {
+        "href": "",
+        "label": ""
+      }
+    }
+  },
+  "textdomain": "image-text-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

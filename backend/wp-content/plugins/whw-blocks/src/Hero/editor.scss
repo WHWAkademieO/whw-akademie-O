@@ -1,0 +1,37 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+@import "../style/global.scss";
+
+.wp-block-create-block-whw-blocks {
+	border: 1px dotted #f00;
+}
+.hero-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.callout-image {
+	margin-top: 120px;
+}
+
+.components-panel__header {
+	background-image: linear-gradient(90deg,#3aaa35,rgba(58,170,53,0));
+	h2 {
+		color: #020202 !important;
+		font-size: 24px !important;
+		font-weight: bold !important;
+	}
+	
+}
+
+.block-editor-link-control__field {
+	margin: 0 !important;
+}
+
+.components-panel__body-toggle {
+	// color: #fff !important;
+}

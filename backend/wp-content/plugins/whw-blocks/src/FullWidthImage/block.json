@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/full-width-image-blocks",
+	"version": "0.1.0",
+	"title": "Full Width Image Blocks",
+	"category": "widgets",
+	"icon": "format-image",
+	"description": "Full Width Image block WHW",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"title": {
+			"type": "string",
+			"selector": ".callout-title"
+		},
+		"image": {
+			"type": "object"
+		},
+		"video": {
+			"type": "object"
+		},
+		"description": {
+			"type": "string"
+		},
+		"cta": {
+			"type": "object"
+		}
+	},
+	"textdomain": "full-width-image-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

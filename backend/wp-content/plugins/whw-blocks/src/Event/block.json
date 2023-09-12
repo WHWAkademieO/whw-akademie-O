@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/event-blocks",
+	"version": "0.1.0",
+	"title": "Event Blocks",
+	"category": "widgets",
+	"icon": "calendar",
+	"description": "Event block WHW",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"events": {
+			"type": "array"
+		},
+		"placeholder": {
+			"type": "object"
+		}
+	},
+	"textdomain": "event-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

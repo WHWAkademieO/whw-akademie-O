@@ -1,0 +1,48 @@
+.grf {
+
+    &__location-address {
+        float: left;
+        width: calc(100% - 40px);
+    }
+
+    &__remove-location-address {
+        float: left;
+        margin-left: 10px;
+        margin-top: 1px;
+        padding: 5px 5px 4px;
+    }
+}
+
+.drag-zone{
+    list-style: none;
+    padding-left: 20px;
+}
+.drag-item{
+    margin-bottom: 18px;
+    padding: 8px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    overflow: hidden;
+    img{
+        cursor: pointer;
+    }
+}
+.example-drag-handle{
+    display: flex;
+    align-items: center;
+}
+.image-slected{
+    width: 300px;
+   outline: none;
+   border: none;
+   background-color: transparent;
+    margin-left: 12px;
+    img{
+        object-fit: cover;
+    }
+}
+
+.repater-close-icon {
+    padding: 20px;
+    text-align: right;
+    cursor: pointer;
+}

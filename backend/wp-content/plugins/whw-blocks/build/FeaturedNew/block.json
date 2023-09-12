@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/featured-new-blocks",
+  "version": "0.1.0",
+  "title": "Featured News Blocks",
+  "category": "widgets",
+  "icon": "slides",
+  "description": "Featured News block WHW",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "featuredNew": {
+      "type": "object"
+    },
+    "lastestNews": {
+      "type": "array"
+    },
+    "ctaLabel": {
+      "type": "string"
+    }
+  },
+  "textdomain": "featured-new-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

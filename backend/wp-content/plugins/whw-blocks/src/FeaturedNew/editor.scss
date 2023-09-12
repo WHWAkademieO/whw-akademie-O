@@ -1,0 +1,40 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.relationship {
+	display: grid;
+	border: 1px solid black;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.unselect, .selected {
+	padding: 10px 0;
+	margin: 0 !important;
+	text-align: center;
+	h4 {
+		margin: 10px 0 !important;
+		padding-bottom: 10px !important;
+		border-bottom: 1px solid black;
+	}
+}
+
+.selected {
+	border-left: 1px solid black;
+}
+
+.list-item {
+	cursor: pointer;
+	list-style: none;
+	&:hover {
+		background-color: #f0f0f0;
+		transition: all 0.25 forward;
+	}
+}
+
+.has--selected {
+	color: #f0f0f0;
+	pointer-events: none;
+}

@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Disallow: /404
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://whw-development.netlify.app/
+
+# Sitemaps
+Sitemap: https://whw-development.netlify.app/sitemap.xml
+Sitemap: undefined/server-sitemap.xml
