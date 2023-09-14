@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import React from "react";
 // import YouTube from "react-youtube";
-const YouTube = dynamic(() => import("react-youtube"), {ssr: false});
+const YouTube = dynamic(() => import("react-youtube"), { ssr: false });
 
 const BackgroundMedia = (props) => {
   const { url } = props.attributes ?? { url: "" };
@@ -15,7 +15,11 @@ const BackgroundMedia = (props) => {
 
   return (
     <div className="mt-20 max-h-[600px] flex justify-center">
-      <YouTube iframeClassName="w-full lg:w-10/12 mx-auto lg:h-[500px] h-[300px]" className="w-10/12 object-cover" videoId={youtubeParser(url)} />
+      <YouTube
+        iframeClassName="w-full lg:w-10/12 mx-auto lg:max-w-[700px] lg:h-[500px] h-[300px]"
+        className="w-10/12 object-cover"
+        videoId={youtubeParser(url)}
+      />
     </div>
   );
 };
