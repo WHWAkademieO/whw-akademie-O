@@ -24,3 +24,24 @@
 a {
   cursor: pointer;
 }
+#CybotCookiebotDialogNav
+  .CybotCookiebotDialogNavItemLink.CybotCookiebotDialogActive {
+  border-bottom: 1px solid #16a34a !important;
+  color: #16a34a !important;
+}
+#CybotCookiebotDialogNav .CybotCookiebotDialogNavItemLink:hover {
+  color: #16a34a !important;
+}
+#CybotCookiebotDialogFooter .CybotCookiebotDialogBodyButton {
+  border: 2px solid #16a34a !important;
+}
+#CybotCookiebotDialogFooter #CybotCookiebotDialogBodyLevelButtonCustomize,
+#CybotCookiebotDialogFooter
+  #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowallSelection {
+  border: 2px solid #16a34a !important;
+}
+#CybotCookiebotDialogFooter
+  #CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll {
+  background-color: #16a34a !important;
+  border-color: #16a34a !important;
+}

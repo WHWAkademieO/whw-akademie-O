@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import "@faustwp/core/dist/css/toolbar.css";
 import "../styles/global.scss";
-import "../styles/global.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
