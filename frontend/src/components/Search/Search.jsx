@@ -13,21 +13,9 @@ const Search = ({ title, content }) => {
   // search context
   const { data } = useSearchContext();
 
-  const finalData = data.filter((ele) => {
-    const { __typename: type } = ele;
-    if (type === "Event") {
-      const {
-        event: { active_date },
-      } = ele;
-      const dateSlice = active_date.split(" ")[0];
-      return moment(new Date(dateSlice)).isSameOrAfter(new Date)
-    }
-    return ele;
-  });
-
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     // console.log(finalData);
-    let final = finalData.filter((ele) => {
+    let final = data.filter(ele => {
       const { title, __typename: type } = ele;
       let finalType;
       if (type === "Post") {
@@ -54,7 +42,7 @@ const Search = ({ title, content }) => {
       <div className="flex w-3/5 lg:w-2/5 mt-5 relative items-center justify-center">
         <input
           type="text"
-          onChange={(e) => setValue(e.target.value)}
+          onChange={e => setValue(e.target.value)}
           value={value}
           placeholder="search"
           aria-label="search"

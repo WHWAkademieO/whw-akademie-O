@@ -44,7 +44,6 @@ const EventCalendar = ({ content, ...rest }) => {
 
   useEffect(() => {
     let currentMonths = { ...monthWithEvent };
-    console.log(eventList);
     eventList = eventList.filter(event => {
       let offsetCurrent = new Date().getTime();
       // console.log(event.acf.active_date);
