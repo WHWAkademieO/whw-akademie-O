@@ -43,6 +43,7 @@ const EventCalendar = ({ content, ...rest }) => {
   }, [eventList]);
 
   useEffect(() => {
+    console.log(eventList);
     let currentMonths = { ...monthWithEvent };
     eventList = eventList.filter(event => {
       let offsetCurrent = new Date().getTime();
@@ -176,7 +177,7 @@ const EventCalendar = ({ content, ...rest }) => {
                   {monthWithEvent[month]?.length > 0 &&
                     monthWithEvent[month]?.map((item, index) => {
                       const string = key + `-item-${index}`;
-                      const check = !item?.acf?.is_full;
+                      const full = item?.acf?.full_option === "full";
                       return (
                         <SwiperSlide
                           className="event-item relative cursor-pointer lg:!mr-0 py-5"
@@ -197,7 +198,7 @@ const EventCalendar = ({ content, ...rest }) => {
                             </h4>
                             <div
                               className={`w-5 h-5 mt-5 rounded-full ${
-                                check ? "bg-main_green" : "bg-black"
+                                !full ? "bg-main_green" : "bg-black"
                               }`}
                             ></div>
                           </div>
@@ -213,14 +214,22 @@ const EventCalendar = ({ content, ...rest }) => {
           );
         })}
       </div>
-      <div className="mt-5 mb-5 gap-5 items-center flex flex-wrap lg:flex-row text-sm justify-center">
-        <div className="flex lg:flex-row-reverse gap-2 items-center">
-          <span className="icon--free w-5 h-5 rounded-full bg-main_green"></span>
-          {/* <h5 className="text-base md:text-lg">Freie Termine</h5> */}
+      <div className="mt-5 mb-5 gap-3 md:gap-5 items-center max-w-[300px] md:max-w-[400px] lg:max-w-[550px] mx-auto grid grid-cols-8 text-sm justify-center">
+        <div className="col-span-3">
+          <h5 className="text-sm md:text-base text-right  lg:text-lg">
+            Freie Termine
+          </h5>
         </div>
-        <div className="flex gap-2 items-center">
-          <span className="icon--block w-5 h-5 rounded-full bg-black"></span>
-          {/* <h5 className="text-base md:text-lg">Termine ausgebucht</h5> */}
+        <div className="flex justify-center items-center">
+          <span className=" w-5 h-5 rounded-full bg-main_green"></span>
+        </div>
+        <div className=" flex justify-center items-center">
+          <span className=" w-5 h-5 rounded-full bg-black"></span>
+        </div>
+        <div className="col-span-3">
+          <h5 className="text-sm md:text-base lg:text-lg">
+            Termine ausgebucht
+          </h5>
         </div>
       </div>
     </div>

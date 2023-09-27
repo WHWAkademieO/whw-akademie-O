@@ -12,13 +12,13 @@ const SEO = ({
   children,
 }) => {
   const { data, loading } = useQuery(siteSettingQuery);
+  const router = useRouter();
 
   if (loading) return null;
   const {
     GlobalSEO: { openGraphImage, robotsMeta },
     siteSettings: { siteLogo },
   } = data?.siteSettings;
-  const router = useRouter();
 
   const canonicalUrl = data?.siteSettings
     ? `${data?.siteSettings?.siteSettings.siteUrl}${router.asPath}`
@@ -50,7 +50,7 @@ const SEO = ({
       <link rel="canonical" href={seo.seoCanonial} />
       <link rel="icon" href={seo.logo} />
       {robotsMeta &&
-        robotsMeta.map((item) => {
+        robotsMeta.map(item => {
           if (item.includes("noindex")) {
             return <meta name="robots" content="noindex" />;
           }
