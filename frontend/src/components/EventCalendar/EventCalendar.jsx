@@ -149,7 +149,7 @@ const EventCalendar = ({ content, ...rest }) => {
                   <AiFillCaretLeft className="fill-main_green " />
                 </span>
                 <Swiper
-                  wrapperClass="lg:justify-center gap-[20px]"
+                  wrapperClass="justify-center gap-[20px]"
                   modules={[Navigation, Autoplay]}
                   slidesPerView={1}
                   loop={false}
