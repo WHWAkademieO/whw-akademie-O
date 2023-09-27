@@ -43,6 +43,7 @@ const EventCalendar = ({ content, ...rest }) => {
   }, [eventList]);
 
   useEffect(() => {
+    console.log(eventList);
     let currentMonths = { ...monthWithEvent };
     eventList = eventList.filter(event => {
       let offsetCurrent = new Date().getTime();
@@ -148,7 +149,7 @@ const EventCalendar = ({ content, ...rest }) => {
                   <AiFillCaretLeft className="fill-main_green " />
                 </span>
                 <Swiper
-                  wrapperClass="justify-center gap-[20px]"
+                  wrapperClass="lg:justify-center gap-[20px]"
                   modules={[Navigation, Autoplay]}
                   slidesPerView={1}
                   loop={false}
@@ -176,7 +177,7 @@ const EventCalendar = ({ content, ...rest }) => {
                   {monthWithEvent[month]?.length > 0 &&
                     monthWithEvent[month]?.map((item, index) => {
                       const string = key + `-item-${index}`;
-                      const check = !item?.acf?.is_full;
+                      const full = item?.acf?.full_option === "full";
                       return (
                         <SwiperSlide
                           className="event-item relative cursor-pointer lg:!mr-0 py-5"
@@ -197,7 +198,7 @@ const EventCalendar = ({ content, ...rest }) => {
                             </h4>
                             <div
                               className={`w-5 h-5 mt-5 rounded-full ${
-                                check ? "bg-main_green" : "bg-black"
+                                !full ? "bg-main_green" : "bg-black"
                               }`}
                             ></div>
                           </div>
