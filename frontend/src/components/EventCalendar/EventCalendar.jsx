@@ -221,7 +221,7 @@ const EventCalendar = ({ content, ...rest }) => {
           </h5>
         </div>
         <div className="flex justify-center items-center">
-          <span className=" w-5 h-5 rounded-full bg-main_green"></span>
+          <span className=" w-5 h-5 rounded-full bg-main_green 123"></span>
         </div>
         <div className=" flex justify-center items-center">
           <span className=" w-5 h-5 rounded-full bg-black"></span>
