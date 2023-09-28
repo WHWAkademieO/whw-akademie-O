@@ -4,7 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import parse from "html-react-parser";
 import { useRouter } from "next/router";
 
-const includePages = ["/", "/eventkalender"];
+const includePages = ["/", "/raumbuchung"];
 
 const FixedCta = ({ content, link, className, top, ...rest }) => {
   const [close, setClose] = useState(false);
