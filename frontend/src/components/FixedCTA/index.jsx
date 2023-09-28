@@ -1,14 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useQuery, gql } from "@apollo/client";
 import parse from "html-react-parser";
+import { useRouter } from "next/router";
+
+const includePages = ["/", "/eventkalender"];
 
 const FixedCta = ({ content, link, className, top, ...rest }) => {
   const [close, setClose] = useState(false);
   const ref = useRef();
-
+  const router = useRouter();
   const { data, loading } = useQuery(FixedCta.query);
-
+  const pathName = router.asPath;
+  const isShown = useMemo(() => {
+    return includePages.includes(pathName);
+  }, []);
+  if (!isShown) return;
   return (
     !loading &&
     !close && (
