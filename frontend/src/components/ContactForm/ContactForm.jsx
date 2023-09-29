@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./contactForm.module.scss";
 import parse from "html-react-parser";
-const ContactForm = (props) => {
+const ContactForm = props => {
   const {
     handleSubmit,
     register,
@@ -17,20 +17,23 @@ const ContactForm = (props) => {
   } = props;
   const [check, setCheck] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
-  const onSubmitForm = async (data) => {
+  const onSubmitForm = async data => {
     await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then((res) => {
-        return res.json();
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return setFormSuccess(false);
       })
-      .then((data) => {
+      .then(data => {
         setFormSuccess(true);
         reset();
       })
-      .catch((err) => console.log("Form Error: " + err));
+      .catch(err => console.log("Form Error: " + err));
   };
 
   return (
@@ -97,7 +100,7 @@ const ContactForm = (props) => {
               required: "Dieses Feld ist erforderlich",
             })}
             value={check}
-            onChange={(e) => setCheck(e.target.value)}
+            onChange={e => setCheck(e.target.value)}
             type="checkbox"
             id="policy"
           />{" "}
