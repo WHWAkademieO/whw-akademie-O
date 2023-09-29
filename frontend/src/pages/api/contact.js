@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     request
       .then(result => {
         if (result.body.Status !== "success") {
-          return res.status(500).json({ error: "Something went wrong" });
+          return res.status(500).json({ data: result.body });
         }
         return res.status(200).json({ success: true, data: result.body });
       })
