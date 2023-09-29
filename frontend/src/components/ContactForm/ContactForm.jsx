@@ -18,16 +18,18 @@ const ContactForm = props => {
   const [check, setCheck] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const onSubmitForm = async data => {
-    await fetch("/api/contact", {
+    const response = await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
       .then(res => {
-        if (res.ok) {
+        console.log(res);
+        if (res.status === 200) {
           return res.json();
         }
-        return setFormSuccess(false);
+        setFormSuccess(false);
+        throw new Error("something went wrong");
       })
       .then(data => {
         console.log(data);
