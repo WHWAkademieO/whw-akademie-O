@@ -18,16 +18,17 @@ const ContactForm = props => {
   const [check, setCheck] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
   const onSubmitForm = async data => {
-    await fetch("/api/contact", {
+    const response = await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     })
       .then(res => {
-        if (res.ok) {
+        if (res.status === 200) {
           return res.json();
         }
-        return setFormSuccess(false);
+        setFormSuccess(false);
+        throw new Error("something went wrong");
       })
       .then(data => {
         setFormSuccess(true);
@@ -35,7 +36,12 @@ const ContactForm = props => {
       })
       .catch(err => console.log("Form Error: " + err));
   };
-
+  useEffect(() => {
+    if (!formSuccess) return;
+    setTimeout(() => {
+      setFormSuccess(false);
+    }, [5000]);
+  }, [formSuccess]);
   return (
     <div className="container flex flex-col gap-8 mb-20 text-center items-center  py-10 md:py-16 lg:py-20 ">
       <h2 className="max-w-[800px] leading-[1.2] uppercase">{parse(title)}</h2>
