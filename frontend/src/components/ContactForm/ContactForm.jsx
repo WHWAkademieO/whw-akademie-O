@@ -30,6 +30,7 @@ const ContactForm = props => {
         return setFormSuccess(false);
       })
       .then(data => {
+        console.log(data);
         setFormSuccess(true);
         reset();
       })
