@@ -24,7 +24,6 @@ const ContactForm = props => {
       body: JSON.stringify(data),
     })
       .then(res => {
-        console.log(res);
         if (res.status === 200) {
           return res.json();
         }
@@ -32,13 +31,17 @@ const ContactForm = props => {
         throw new Error("something went wrong");
       })
       .then(data => {
-        console.log(data);
         setFormSuccess(true);
         reset();
       })
       .catch(err => console.log("Form Error: " + err));
   };
-
+  useEffect(() => {
+    if (!formSuccess) return;
+    setTimeout(() => {
+      setFormSuccess(false);
+    }, [5000]);
+  }, [formSuccess]);
   return (
     <div className="container flex flex-col gap-8 mb-20 text-center items-center  py-10 md:py-16 lg:py-20 ">
       <h2 className="max-w-[800px] leading-[1.2] uppercase">{parse(title)}</h2>
