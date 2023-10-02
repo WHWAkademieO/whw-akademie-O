@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <SearchProvider>
-      <ErrorBoundary fallback={fallbackRender}>
+      <ErrorBoundary fallback={"some thing went wrong!"}>
         <FaustProvider pageProps={pageProps}>
           <WordPressBlocksProvider
             config={{
