@@ -11,10 +11,6 @@ import { useMemo } from "react";
 import LoadingOverlay from "@/components/Loading";
 
 export default function Component(props) {
-  // Loading state for previews
-  if (props.loading) {
-    return <LoadingOverlay/>
-  }
   const { editorBlocks } = props.data.page;
   const {
     seoTitle,

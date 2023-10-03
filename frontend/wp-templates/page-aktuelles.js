@@ -13,10 +13,6 @@ const Component = (props) => {
   const posts = props?.data?.posts?.nodes;
   const hero = props?.data?.page?.editorBlocks[0]?.attributes;
 
-  if (props?.loading) {
-    return <LoadingOverlay />;
-  }
-
   return (
     <div>
       <SEO title={"whw academy - Posts"} />

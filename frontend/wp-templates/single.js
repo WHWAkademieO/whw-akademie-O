@@ -6,10 +6,6 @@ import parse from "html-react-parser";
 import wpBlocks from "../wp-blocks";
 
 export default function Component(props) {
-  // Loading state for previews
-  if (props.loading) {
-    return <>Loading...</>;
-  }
 
   const { title: siteTitle, description: siteDescription } =
     props?.data?.generalSettings;
