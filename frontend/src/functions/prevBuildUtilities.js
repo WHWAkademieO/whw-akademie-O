@@ -1,12 +1,6 @@
+import { ApolloClient, InMemoryCache, gql, HttpLink } from "@apollo/client";
 
-import  {
-  ApolloClient,
-  InMemoryCache,
-  gql,
-  HttpLink,
-} from"@apollo/client";
-
-const generateJsonString = (data) => {
+const generateJsonString = data => {
   try {
     let result;
     switch (true) {
@@ -59,10 +53,10 @@ const getPages = async () => {
         }
       `,
     })
-    .then((result) => {
+    .then(result => {
       const nodes = result.data?.pages?.edges;
       if (!nodes) return [];
-      const data = nodes.map((ele) => ele.node);
+      const data = nodes.map(ele => ele.node);
       return data;
     });
 };
@@ -85,15 +79,15 @@ const getPosts = async () => {
         }
       `,
     })
-    .then((result) => {
+    .then(result => {
       const nodes = result.data?.posts?.edges;
       if (!nodes) return [];
-      const data = nodes.map((ele) => {
+      const data = nodes.map(ele => {
         return { __typename: "News", ...ele.node };
       });
       return data;
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 };
 
 const getDownload = async () => {
@@ -117,7 +111,7 @@ const getDownload = async () => {
         }
       `,
     })
-    .then((result) => {
+    .then(result => {
       const nodes = result.data?.page?.download.download;
       if (!nodes) return [];
       return nodes;
@@ -141,9 +135,11 @@ const getEvent = async () => {
         }
       `,
     })
-    .then((result) => {
+    .then(result => {
       const blocks = result?.data?.page?.editorBlocks;
-      const eventBlock = blocks?.find(block => block.__typename === "CreateBlockEventBlocks")
+      const eventBlock = blocks?.find(
+        block => block.__typename === "CreateBlockEventBlocks"
+      );
       const eventData = generateJsonString(eventBlock?.attributes?.events);
       return eventData?.map(event => ({
         __typename: "Event",
@@ -151,8 +147,8 @@ const getEvent = async () => {
         date: event?.date,
         slug: event?.slug,
         title: event?.title?.rendered,
-        event: event?.acf
-      }))
+        event: event?.acf,
+      }));
     });
 };
 const getThankyouText = async () => {
@@ -168,31 +164,32 @@ const getThankyouText = async () => {
         }
       `,
     })
-    .then((result) => {
-      const thankyouText = result.data?.siteSettings?.siteSettings?.thankYouText || "";
+    .then(result => {
+      const thankyouText =
+        result.data?.siteSettings?.siteSettings?.thankYouText || "";
       return thankyouText;
     });
 };
 
 const getAllData = async () => {
   let final = [];
-  let thankyouText = ""
-  await getPages().then((data) => {
+  let thankyouText = "";
+  await getPages().then(data => {
     final = final.concat(data);
   });
 
-  await getPosts().then((data) => {
+  await getPosts().then(data => {
     final = final.concat(data);
   });
 
-  await getDownload().then((data) => {
+  await getDownload().then(data => {
     final = final.concat(data);
   });
 
-  await getEvent().then((data) => {
+  await getEvent().then(data => {
     final = final.concat(data);
   });
-  return final
+
+  return final;
 };
-export default getAllData
-
+export default getAllData;

@@ -17,6 +17,7 @@ const ContactForm = props => {
   } = props;
   const [check, setCheck] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
+
   const onSubmitForm = async data => {
     const response = await fetch("/api/contact", {
       method: "post",

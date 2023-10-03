@@ -14,7 +14,6 @@ import blocks from "../components/blocks";
 import SearchProvider from "@/context/searchContext";
 import moment from "moment";
 import { ErrorBoundary } from "react-error-boundary";
-import fallbackRender from "@/components/FallbackRender";
 const monserrat = Montserrat({ subsets: ["cyrillic", "latin"] });
 
 export default function App({ Component, pageProps }) {
