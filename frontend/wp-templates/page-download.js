@@ -19,11 +19,6 @@ const Component = props => {
     id: download?.file?.id,
   }));
   
-  if (props?.loading) {
-    return <LoadingOverlay />;
-  }
-
-
   return (
     <Layout>
       <div className="bg-gradient-green-full">

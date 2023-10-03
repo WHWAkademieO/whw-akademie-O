@@ -17,11 +17,6 @@ const Component = (props) => {
   const article = props?.data?.post?.article || {};
   const featureImage = props?.data?.post?.featuredImage?.node?.sourceUrl || "";
   const seo = props?.data?.post?.pageSettings;
-
-  if (props?.loading) {
-    return <LoadingOverlay />;
-  }
-
   return (
     <Layout>
       <SEO

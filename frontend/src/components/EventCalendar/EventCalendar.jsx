@@ -38,16 +38,11 @@ const EventCalendar = ({ content, ...rest }) => {
   );
 
   // month ref
-  const monthRef = useMemo(() => {
-    return Array.from({ length: monthWithEvent.length }, () => useRef());
-  }, [eventList]);
 
   useEffect(() => {
-    console.log(eventList);
     let currentMonths = { ...monthWithEvent };
-    eventList = eventList.filter(event => {
+    eventList = eventList.filter((event) => {
       let offsetCurrent = new Date().getTime();
-      // console.log(event.acf.active_date);
       let offsetEvent = new Date(event.acf.active_date).getTime();
 
       return Math.abs(offsetEvent) - Math.abs(offsetCurrent) > 0;
@@ -57,7 +52,7 @@ const EventCalendar = ({ content, ...rest }) => {
       .sort(
         (a, b) => new Date(a?.acf?.active_date) - new Date(b?.acf?.active_date)
       )
-      .forEach(event => {
+      .forEach((event) => {
         const date = moment(event?.acf?.active_date);
         date.locale("de");
         if (!currentMonths[date.format("MMMM")]) {
@@ -73,7 +68,7 @@ const EventCalendar = ({ content, ...rest }) => {
   }, [eventList]);
 
   useEffect(() => {
-    const eventMouse = document.addEventListener("keyup", e => {
+    const eventMouse = document.addEventListener("keyup", (e) => {
       if (e.key === "Escape") {
         setOpenKey("");
       }
@@ -88,11 +83,11 @@ const EventCalendar = ({ content, ...rest }) => {
     setTimeout(() => {
       const events = document.querySelectorAll(".event-item");
       if (!events) return;
-      events.forEach(node => {
+      events.forEach((node) => {
         const slug = node?.getAttribute("data-slug");
         if (event === slug) {
           setSelectedEvent({
-            ...eventList.find(eventItem => eventItem.slug === event),
+            ...eventList.find((eventItem) => eventItem.slug === event),
             placeholder: rest?.attributes?.placeholder,
           });
           node.scrollIntoView({ behavior: "smooth" });
@@ -110,7 +105,7 @@ const EventCalendar = ({ content, ...rest }) => {
   }, [event, eventList]);
 
   const handleSelectEvent = useCallback(
-    item => {
+    (item) => {
       setSelectedEvent({ ...item, placeholder: rest?.attributes?.placeholder });
       setOpenKey(item.id);
     },
@@ -136,7 +131,6 @@ const EventCalendar = ({ content, ...rest }) => {
           const prevEl = `#calendar-${index} .prev-arrow`;
           return (
             <div
-              ref={monthRef[index]}
               key={index}
               id={`calendar-${index}`}
               className="container mt-10 lg:mt-20"
@@ -149,7 +143,7 @@ const EventCalendar = ({ content, ...rest }) => {
                   <AiFillCaretLeft className="fill-main_green " />
                 </span>
                 <Swiper
-                  wrapperClass="justify-center gap-[20px]"
+                  wrapperClass="lg:justify-center gap-[20px]"
                   modules={[Navigation, Autoplay]}
                   slidesPerView={1}
                   loop={false}
@@ -225,6 +219,9 @@ const EventCalendar = ({ content, ...rest }) => {
         </div>
         <div className=" flex justify-center items-center">
           <span className=" w-5 h-5 rounded-full bg-black"></span>
+          {/* <h5 className="text-sm md:text-base lg:text-lg">
+            Termine ausgebucht
+          </h5> */}
         </div>
         <div className="col-span-3">
           <h5 className="text-sm md:text-base lg:text-lg">
