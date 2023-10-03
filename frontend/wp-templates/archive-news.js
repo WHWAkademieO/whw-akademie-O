@@ -10,10 +10,6 @@ import ImageTextBlock from "@/components/ImageTextBlock/ImageTextBlock";
 const Component = props => {
   const posts = props?.data?.posts?.nodes;
 
-  if (props?.loading) {
-    return <LoadingOverlay />;
-  }
-
   return (
     <Layout>
       <Hero title="aktuelles" height="50vh" bg="/news/hero-news.png" />

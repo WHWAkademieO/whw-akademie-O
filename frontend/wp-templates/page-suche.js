@@ -11,15 +11,10 @@ import { SEO } from "@/components";
 import Search from "@/components/Search/Search";
 
 const Component = props => {
-  //   console.log(props);
 
   const hero = props?.data?.page?.editorBlocks[0]?.attributes;
   const textBlock = props?.data?.page?.editorBlocks[1];
-  console.log(textBlock);
-  if (props?.loading) {
-    return <LoadingOverlay />;
-  }
-
+ 
   return (
     <div>
       <SEO title={"whw academy - Suche"} />

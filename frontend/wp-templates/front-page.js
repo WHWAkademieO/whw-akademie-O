@@ -1,54 +1,33 @@
-import { gql } from "@apollo/client";
-import * as MENUS from "../src/constants/menus";
-import { BlogInfoFragment } from "../src/fragments/GeneralSettings";
-import { SEO } from "../src/components";
-import parse from "html-react-parser";
-import { flatListToHierarchical } from "@faustwp/core";
-import { WordPressBlocksViewer } from "@faustwp/blocks";
-import components from "../src/components/blocks";
-import Layout from "@/components/layout";
-import { useMemo } from "react";
 import LoadingOverlay from "@/components/Loading";
-
+import Layout from "@/components/layout";
+import { gql } from "@apollo/client";
+import { WordPressBlocksViewer } from "@faustwp/blocks";
+import { SEO } from "../src/components";
+import components from "../src/components/blocks";
 export default function Component(props) {
-  // Loading state for previews
-  if (props.loading) {
-    return <LoadingOverlay />;
-  }
-
   const { editorBlocks } = props.data.page;
   const {
     seoTitle: pageTitle,
     description: pageDescription,
     seoCanonical,
   } = props?.data?.page?.pageSettings;
-  const { title, content, featuredImage } = props?.data?.page ?? { title: "" };
+  const { title } = props?.data?.page ?? { title: "" };
 
   return (
-    <Layout>
+    <>
       <SEO
         seoCanonical={seoCanonical}
         title={title || pageTitle}
         description={pageDescription}
       />
-      {/* <div>{parse(content)}</div> */}
-      <WordPressBlocksViewer blocks={editorBlocks} />
-    </Layout>
+      <Layout>
+        <WordPressBlocksViewer blocks={editorBlocks} />
+      </Layout>
+    </>
   );
 }
 
-Component.variables = ({ uri, databaseId, ...rest }, ctx) => {
-  return {
-    uri,
-    headerLocation: MENUS.PRIMARY_LOCATION,
-    footerLocation: MENUS.FOOTER_LOCATION,
-    databaseId,
-    asPreview: ctx?.asPreview,
-  };
-};
-
 Component.query = gql`
-  ${BlogInfoFragment}
   ${components.CreateBlockHeroBlocks.fragments.entry}
   ${components.CreateBlockTextBlocks.fragments.entry}
   ${components.CreateBlockTextCtaBlocks.fragments.entry}
@@ -60,59 +39,19 @@ Component.query = gql`
   ${components.CreateBlockFeaturedNewBlocks.fragments.entry}
   ${components.CreateBlockFormBlock.fragments.entry}
   ${components.CreateBlockBackgroundMediaBlocks.fragments.entry}
-  fragment NavigationMenuItemFragment on MenuItem {
-    id
-    path
-    label
-    parentId
-    cssClasses
-    menu {
-      node {
-        name
-      }
-    }
-  }
-  fragment FeaturedImageFragment on NodeWithFeaturedImage {
-    featuredImage {
-      node {
-        id
-        sourceUrl
-        altText
-        mediaDetails {
-          width
-          height
-        }
-      }
-    }
-  }
+  
+  
   query GetPageData(
-    $databaseId: ID!
-    $headerLocation: MenuLocationEnum
-    $footerLocation: MenuLocationEnum
     $asPreview: Boolean = false
   ) {
-    page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+    page(id: "400", idType: DATABASE_ID, asPreview: $asPreview) {
       title
-      content
       pageSettings {
         description
         seoTitle
         seoCanonical 
       }
-      download{
-        download{
-          title
-          file{
-            sourceUrl
-            mediaItemUrl
-          }
-        }
-      }
-      ...FeaturedImageFragment
       editorBlocks {
-        name
-        __typename
-        renderedHtml
         ...${components.CreateBlockHeroBlocks.fragments.key}
         ...${components.CreateBlockTextBlocks.fragments.key}
         ...${components.CreateBlockTextCtaBlocks.fragments.key}
@@ -126,18 +65,12 @@ Component.query = gql`
         ...${components.CreateBlockBackgroundMediaBlocks.fragments.key}
       }
     }
-    generalSettings {
-      ...BlogInfoFragment
-    }
-    footerMenuItems: menuItems(where: { location: $footerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
-    headerMenuItems: menuItems(where: { location: $headerLocation }) {
-      nodes {
-        ...NavigationMenuItemFragment
-      }
-    }
   }
 `;
+
+Component.variables = ({ databaseId }, ctx) => {
+  return {
+    databaseId,
+    asPreview: ctx?.asPreview,
+  };
+};

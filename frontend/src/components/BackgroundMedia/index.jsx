@@ -3,8 +3,7 @@ import { gql } from "@apollo/client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import React from "react";
-// import YouTube from "react-youtube";
-const YouTube = dynamic(() => import("react-youtube"), { ssr: false });
+import YouTube from "react-youtube";
 
 const BackgroundMedia = (props) => {
   const { url } = props.attributes ?? { url: "" };
