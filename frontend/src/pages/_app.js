@@ -13,12 +13,10 @@ import blocks from "../components/blocks";
 import SearchProvider from "@/context/searchContext";
 import moment from "moment";
 
-import fallbackRender from "@/components/FallbackRender";
 import { ErrorBoundary } from "react-error-boundary";
 import LoadingOverlay from "@/components/Loading";
 
 const montserrat = Montserrat({ subsets: ["cyrillic", "latin"] });
-
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
