@@ -12,7 +12,7 @@ import { WordPressBlocksProvider } from "@faustwp/blocks";
 import blocks from "../components/blocks";
 import SearchProvider from "@/context/searchContext";
 import moment from "moment";
-import fallbackRender from "@/components/FallbackRender";
+
 import { ErrorBoundary } from "react-error-boundary";
 import LoadingOverlay from "@/components/Loading";
 
@@ -37,7 +37,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <ErrorBoundary fallback={fallbackRender}>
+    <ErrorBoundary fallback={"something went wrong."}>
       <SearchProvider>
         <FaustProvider pageProps={pageProps}>
           <WordPressBlocksProvider
