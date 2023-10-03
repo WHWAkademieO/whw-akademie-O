@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./contactForm.module.scss";
 import parse from "html-react-parser";
+import { getEmailSetting } from "@/functions/prevBuildUtilities";
 const ContactForm = props => {
   const {
     handleSubmit,
@@ -17,12 +18,15 @@ const ContactForm = props => {
   } = props;
   const [check, setCheck] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
+  const [emailSetting, setEmailSetting] = useState();
 
   const onSubmitForm = async data => {
+    // get email setting
+    // console.log(emailSetting);
     const response = await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, ...emailSetting }),
     })
       .then(res => {
         if (res.status === 200) {
@@ -43,6 +47,12 @@ const ContactForm = props => {
       setFormSuccess(false);
     }, [5000]);
   }, [formSuccess]);
+
+  useEffect(() => {
+    getEmailSetting().then(res => {
+      setEmailSetting(res);
+    });
+  }, []);
   return (
     <div className="container flex flex-col gap-8 mb-20 text-center items-center  py-10 md:py-16 lg:py-20 ">
       <h2 className="max-w-[800px] leading-[1.2] uppercase">{parse(title)}</h2>

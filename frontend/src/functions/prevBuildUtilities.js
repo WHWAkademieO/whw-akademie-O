@@ -1,5 +1,11 @@
-import { ApolloClient, InMemoryCache, gql, HttpLink } from "@apollo/client";
-
+const {
+  ApolloClient,
+  InMemoryCache,
+  gql,
+  HttpLink,
+} = require("@apollo/client");
+const dotenv = require("dotenv");
+dotenv.config();
 const generateJsonString = data => {
   try {
     let result;
@@ -26,8 +32,9 @@ const generateJsonString = data => {
   }
 };
 
+const URL_WP = `https://backend.whw-akademie-o.de/graphql`;
 const httpLink = new HttpLink({
-  uri: `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/graphql`,
+  uri: URL_WP,
   fetch,
 });
 
@@ -168,6 +175,29 @@ const getThankyouText = async () => {
       const thankyouText =
         result.data?.siteSettings?.siteSettings?.thankYouText || "";
       return thankyouText;
+    });
+};
+
+export const getEmailSetting = async () => {
+  return await client
+    .query({
+      query: gql`
+        query NewQuery {
+          siteSettings {
+            emailSetting {
+              adminMail
+              userMail
+              adminUsers {
+                email
+                name
+              }
+            }
+          }
+        }
+      `,
+    })
+    .then(result => {
+      return result.data?.siteSettings?.emailSetting;
     });
 };
 
