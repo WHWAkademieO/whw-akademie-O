@@ -24,10 +24,13 @@ export default async function handler(req, res) {
   const subject = "Website Contact Form Submission ";
   const recipient = email;
 
-  const userConfig = adminUsers.map(ele => ({
-    Name: ele.name,
-    Email: ele.email,
-  }));
+  const userConfig =
+    adminUsers.length > 0
+      ? adminUsers?.map(ele => ({
+          Name: ele.name,
+          Email: ele.email,
+        }))
+      : [];
 
   const date = moment()
     .local("de")
