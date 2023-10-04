@@ -3,6 +3,7 @@ import parse from "html-react-parser";
 import { BsXCircle } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { generateJsonString } from "@/utils/helpers";
+import { getEmailSetting } from "@/functions/prevBuildUtilities";
 const EventModal = forwardRef(function(
   { date, title, content, openKey, itemKey, setOpenKey, eventItem },
   ref
@@ -10,6 +11,7 @@ const EventModal = forwardRef(function(
   const isOpen = useMemo(() => !!openKey, [openKey]);
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
+  const [emailSetting, setEmailSetting] = useState();
   const {
     register,
     handleSubmit,
@@ -22,7 +24,7 @@ const EventModal = forwardRef(function(
     await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, ...emailSetting }),
     })
       .then(res => {
         return res.json();
@@ -36,6 +38,10 @@ const EventModal = forwardRef(function(
         setIsFormLoading(false);
       });
   };
+
+  useEffect(() => {
+    getEmailSetting().then(res => setEmailSetting(res));
+  }, []);
 
   const generateFullOption = eventItem => {
     switch (eventItem.acf?.full_option) {
@@ -118,6 +124,7 @@ const EventModal = forwardRef(function(
         );
     }
   };
+
   return (
     <div
       onClick={() => {
