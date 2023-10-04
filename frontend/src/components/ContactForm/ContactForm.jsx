@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import styles from "./contactForm.module.scss";
 import parse from "html-react-parser";
 import { getEmailSetting } from "@/functions/prevBuildUtilities";
+import { EMAIL_ROOM_BOOKING_TYPE } from "@/constant";
 const ContactForm = props => {
   const {
     handleSubmit,
@@ -26,7 +27,11 @@ const ContactForm = props => {
     const response = await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, ...emailSetting }),
+      body: JSON.stringify({
+        ...data,
+        ...emailSetting,
+        type: EMAIL_ROOM_BOOKING_TYPE,
+      }),
     })
       .then(res => {
         if (res.status === 200) {
@@ -147,7 +152,7 @@ const ContactForm = props => {
           absenden
         </button>
         {formSuccess && (
-          <span className="text-main_green mt-4">
+          <span className="text-main_green text-center mt-4">
             Herzlichen Dank für Ihre Anfrage. Wir werden uns in Kürze bei Ihnen
             zurückmelden.
           </span>
