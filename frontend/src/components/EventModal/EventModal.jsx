@@ -170,7 +170,7 @@ const EventModal = forwardRef(function(
             {!formSuccess ? (
               generateFullOption(eventItem)
             ) : (
-              <span className="text-main_green mt-4">
+              <span className="text-main_green text-center mt-4">
                 Herzlichen Dank für Ihre Anfrage. Wir werden uns in Kürze bei
                 Ihnen zurückmelden.
               </span>
