@@ -3,6 +3,7 @@ import Mailjet from "node-mailjet";
 import thankyouText from "../../../src/data/thankyou.json";
 import moment from "moment";
 import { getEmailSetting } from "@/functions/prevBuildUtilities";
+import { EMAIL_EVENT_TYPE, EMAIL_ROOM_BOOKING_TYPE } from "@/constant";
 export default async function handler(req, res) {
   const publicKey = process.env.MAILJET_KEY_PUBLIC;
   const privateKey = process.env.MAILJET_KEY_PRIVATE;
@@ -19,6 +20,7 @@ export default async function handler(req, res) {
     adminMail,
     userMail,
     adminUsers,
+    type,
   } = req.body;
   const mailjetTemplateID = 3466776;
   const subject = "Website Contact Form Submission ";
@@ -31,6 +33,14 @@ export default async function handler(req, res) {
           Email: ele.email,
         }))
       : [];
+
+  let title = "WHW-Akademie O! - Eingangsbestätigung Ihrer ";
+
+  if (type === EMAIL_EVENT_TYPE) {
+    title += "Anmeldung für unser Event";
+  } else if (type === EMAIL_ROOM_BOOKING_TYPE) {
+    title += "Anfrage für eine Raumreservierung";
+  }
 
   const date = moment()
     .local("de")
@@ -48,7 +58,7 @@ export default async function handler(req, res) {
             Name: name,
           },
         ],
-        Subject: `WHW-Akademie O! - Eingangsbestätigung Ihrer Anfrage für eine Raumreservierung / Anmeldung für unser Event`,
+        Subject: title,
         TextPart: "",
         HTMLPart: `<div style="max-width:600px;">
           <p>Sehr geehrte/r <strong> ${name},</strong> <br/>

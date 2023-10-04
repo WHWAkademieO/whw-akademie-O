@@ -26,7 +26,7 @@ const ContactForm = props => {
     const response = await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, ...emailSetting }),
+      body: JSON.stringify({ ...data, ...emailSetting, type: "room-booking" }),
     })
       .then(res => {
         if (res.status === 200) {

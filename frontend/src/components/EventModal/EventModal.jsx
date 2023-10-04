@@ -4,6 +4,7 @@ import { BsXCircle } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { generateJsonString } from "@/utils/helpers";
 import { getEmailSetting } from "@/functions/prevBuildUtilities";
+import { EMAIL_EVENT_TYPE } from "@/constant";
 const EventModal = forwardRef(function(
   { date, title, content, openKey, itemKey, setOpenKey, eventItem },
   ref
@@ -24,7 +25,11 @@ const EventModal = forwardRef(function(
     await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, ...emailSetting }),
+      body: JSON.stringify({
+        ...data,
+        ...emailSetting,
+        type: EMAIL_EVENT_TYPE,
+      }),
     })
       .then(res => {
         return res.json();
