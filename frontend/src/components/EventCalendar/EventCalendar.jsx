@@ -9,7 +9,6 @@ import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import EventModal from "../EventModal/EventModal";
-import { Dialog } from "@headlessui/react";
 import { gql } from "@apollo/client";
 import { generateJsonString } from "@/utils/helpers";
 import "moment/locale/de";
@@ -38,10 +37,9 @@ const EventCalendar = ({ content, ...rest }) => {
   );
 
   // month ref
-
   useEffect(() => {
     let currentMonths = { ...monthWithEvent };
-    eventList = eventList.filter((event) => {
+    eventList = eventList.filter(event => {
       let offsetCurrent = new Date().getTime();
       let offsetEvent = new Date(event.acf.active_date).getTime();
 
@@ -52,7 +50,7 @@ const EventCalendar = ({ content, ...rest }) => {
       .sort(
         (a, b) => new Date(a?.acf?.active_date) - new Date(b?.acf?.active_date)
       )
-      .forEach((event) => {
+      .forEach(event => {
         const date = moment(event?.acf?.active_date);
         date.locale("de");
         if (!currentMonths[date.format("MMMM")]) {
@@ -66,9 +64,8 @@ const EventCalendar = ({ content, ...rest }) => {
       });
     setMonthWithEvent(currentMonths);
   }, [eventList]);
-
   useEffect(() => {
-    const eventMouse = document.addEventListener("keyup", (e) => {
+    const eventMouse = document.addEventListener("keyup", e => {
       if (e.key === "Escape") {
         setOpenKey("");
       }
@@ -83,11 +80,11 @@ const EventCalendar = ({ content, ...rest }) => {
     setTimeout(() => {
       const events = document.querySelectorAll(".event-item");
       if (!events) return;
-      events.forEach((node) => {
+      events.forEach(node => {
         const slug = node?.getAttribute("data-slug");
         if (event === slug) {
           setSelectedEvent({
-            ...eventList.find((eventItem) => eventItem.slug === event),
+            ...eventList.find(eventItem => eventItem.slug === event),
             placeholder: rest?.attributes?.placeholder,
           });
           node.scrollIntoView({ behavior: "smooth" });
@@ -105,7 +102,7 @@ const EventCalendar = ({ content, ...rest }) => {
   }, [event, eventList]);
 
   const handleSelectEvent = useCallback(
-    (item) => {
+    item => {
       setSelectedEvent({ ...item, placeholder: rest?.attributes?.placeholder });
       setOpenKey(item.id);
     },
@@ -172,6 +169,7 @@ const EventCalendar = ({ content, ...rest }) => {
                     monthWithEvent[month]?.map((item, index) => {
                       const string = key + `-item-${index}`;
                       const full = item?.acf?.full_option === "full";
+
                       return (
                         <SwiperSlide
                           className="event-item relative cursor-pointer lg:!mr-0 py-5"
