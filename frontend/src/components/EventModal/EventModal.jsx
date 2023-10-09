@@ -175,6 +175,12 @@ const EventModal = forwardRef(function(
                 Ihnen zurückmelden.
               </span>
             )}
+            <style>{`
+              a{
+                color:#007138;
+                text-decoration:underline;
+              }
+            `}</style>
           </div>
         )}
       </div>
