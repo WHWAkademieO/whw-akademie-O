@@ -177,7 +177,7 @@ const EventModal = forwardRef(function(
             )}
             <style>{`
               a{
-                color:blue;
+                color:#007138;
                 text-decoration:underline;
               }
             `}</style>
