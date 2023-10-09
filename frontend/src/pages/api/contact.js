@@ -84,7 +84,7 @@ export default async function handler(req, res) {
         <div style="margin-top:8px;"> </div>
         <strong> Kontaktinformationen des Absenders:</strong>  ${email} / ${phone} <br/>
         <div style="margin-top:8px;"> </div>
-        <strong>Betreff des Formulars:</strong> ${message}  </p>
+        <strong>Nachricht:</strong> ${message}  </p>
         <div style="margin-top:8px;"> </div>
         </div>
 
