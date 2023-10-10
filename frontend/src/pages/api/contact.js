@@ -64,7 +64,7 @@ export default async function handler(req, res) {
     currentSender.name = "WHW Akademie O!";
   } else {
     currentSender.email = senders[idx].Email;
-    currentSender.name = "WHW Akademie O!";
+    currentSender.name = senderMail.name;
   }
 
   let title = "WHW-Akademie O! - Eingangsbestätigung Ihrer ";
