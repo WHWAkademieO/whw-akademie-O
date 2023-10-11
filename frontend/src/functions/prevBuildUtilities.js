@@ -187,6 +187,11 @@ export const getEmailSetting = async () => {
             emailSetting {
               adminMail
               userMail
+              senderMail {
+                email
+                fieldGroupName
+                name
+              }
               adminUsers {
                 email
                 name

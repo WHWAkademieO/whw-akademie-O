@@ -18,6 +18,7 @@ export default async function handler(req, res) {
     message,
     phone,
     adminMail,
+    senderMail,
     userMail,
     adminUsers,
     type,
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
   const mailjetTemplateID = 3466776;
   const subject = "Website Contact Form Submission ";
   const recipient = email;
-
+  let currentSender = {};
   const userConfig =
     adminUsers.length > 0
       ? adminUsers?.map(ele => ({
@@ -33,6 +34,38 @@ export default async function handler(req, res) {
           Email: ele.email,
         }))
       : [];
+
+  // call sender
+  let senders = [];
+  const request = mailjet.get("sender", { version: "v3" }).request();
+
+  senders = await request
+    .then(result => {
+      const { Data } = result.body;
+      return Data;
+    })
+    .catch(e => console.log(err));
+
+  // console.log(senders);
+  const idx = senders.findIndex(ele => {
+    const { Email } = ele;
+    const { email } = senderMail;
+    return Email === email && ele.Status === "Active";
+  });
+  // console.log(senderMail);
+  // console.log(idx);
+
+  if (idx === -1) {
+    const qualifiedSender = senders.find(ele => {
+      const { IsDefaultSender } = ele;
+      return IsDefaultSender === true;
+    });
+    currentSender.email = qualifiedSender.Email;
+    currentSender.name = "WHW Akademie O!";
+  } else {
+    currentSender.email = senders[idx].Email;
+    currentSender.name = senderMail.name;
+  }
 
   let title = "WHW-Akademie O! - Eingangsbestätigung Ihrer ";
 
@@ -49,8 +82,8 @@ export default async function handler(req, res) {
     Messages: [
       {
         From: {
-          Email: "kathrin.risse@whw.de",
-          name: "WHW CD",
+          Email: currentSender.email,
+          name: currentSender.name,
         },
         To: [
           {
