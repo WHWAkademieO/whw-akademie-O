@@ -101,8 +101,8 @@ export default async function handler(req, res) {
       },
       {
         From: {
-          Email: "kathrin.risse@whw.de",
-          name: "WHW CD",
+          Email: currentSender.email,
+          name: currentSender.name,
         },
         To: [...userConfig],
         Subject: `Neue Formular-Einreichung eingegangen`,

@@ -23,7 +23,7 @@ const ContactForm = props => {
 
   const onSubmitForm = async data => {
     // get email setting
-    // console.log(emailSetting);
+
     const response = await fetch("/api/contact", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -41,6 +41,7 @@ const ContactForm = props => {
         throw new Error("something went wrong");
       })
       .then(data => {
+        console.log(data);
         setFormSuccess(true);
         reset();
       })
