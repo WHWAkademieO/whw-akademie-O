@@ -17,7 +17,7 @@ const Component = props => {
  
   return (
     <div>
-      <SEO title={"whw academy - Suche"} />
+      <SEO title={"Suche"} />
       <Layout>
         {hero && (
           <Hero

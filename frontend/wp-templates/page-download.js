@@ -9,33 +9,37 @@ import { BlogInfoFragment } from "../src/fragments/GeneralSettings";
 import components from "../src/components/blocks";
 import * as MENUS from "../src/constants/menus";
 import { WordPressBlocksViewer } from "@faustwp/blocks";
+import { SEO } from "@/components";
 
-const Component = props => {
+const Component = (props) => {
   const { page } = props.data;
   const { editorBlocks } = page;
-  const downloadFiles = dlv(page, "download.download")?.map(download => ({
+  const downloadFiles = dlv(page, "download.download")?.map((download) => ({
     content: download?.title,
     downloadSrc: download?.file?.sourceUrl || download?.file?.mediaItemUrl,
     id: download?.file?.id,
   }));
-  
+
   return (
-    <Layout>
-      <div className="bg-gradient-green-full">
-        <div className="container min-h-[500px] flex gap-10 flex-col justify-center items-center">
-          <h2 className="uppercase text-4xl lg:text-6xl text-white font-bold">
-            Downloads
-          </h2>
-          <div className="h-16  border-[5px] border-white w-full max-w-[600px] relative bg-white">
-            <div className="absolute bg-black w-3/5 top-0 left-0 h-full"></div>
+    <>
+      <SEO title={"Downloads"} />
+      <Layout>
+        <div className="bg-gradient-green-full">
+          <div className="container min-h-[500px] flex gap-10 flex-col justify-center items-center">
+            <h2 className="uppercase text-4xl lg:text-6xl text-white font-bold">
+              Downloads
+            </h2>
+            <div className="h-16  border-[5px] border-white w-full max-w-[600px] relative bg-white">
+              <div className="absolute bg-black w-3/5 top-0 left-0 h-full"></div>
+            </div>
           </div>
         </div>
-      </div>
-      {/* <TitleTextBlock /> */}
-      <WordPressBlocksViewer blocks={editorBlocks} />
-      {/* <WordPressTemplate {...props} /> */}
-      <Download data={downloadFiles || []} />
-    </Layout>
+        {/* <TitleTextBlock /> */}
+        <WordPressBlocksViewer blocks={editorBlocks} />
+        {/* <WordPressTemplate {...props} /> */}
+        <Download data={downloadFiles || []} />
+      </Layout>
+    </>
   );
 };
 
