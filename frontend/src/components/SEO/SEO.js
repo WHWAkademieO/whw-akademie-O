@@ -26,7 +26,7 @@ const SEO = ({
 
   const pageTitle = data?.siteSettings?.siteSettings?.title || title;
   const seo = {
-    title: `WHW AKADEMIE - ${pageTitle}`,
+    title: `WHW AKADEMIE O! - ${pageTitle}`,
     description: description,
     image: image || openGraphImage?.sourceUrl,
     logo: siteLogo?.sourceUrl || "/logo.ico",
