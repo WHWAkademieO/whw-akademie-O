@@ -12,6 +12,15 @@ import { WordPressBlocksViewer } from "@faustwp/blocks";
 import { SEO } from "@/components";
 
 const Component = (props) => {
+  const {
+    seoTitle,
+    description: pageDescription,
+    seoCanonical,
+    socialGraphImage,
+  } = props?.data?.page?.pageSettings;
+  const { title } = props?.data?.page ?? {
+    title: "",
+  };
   const { page } = props.data;
   const { editorBlocks } = page;
   const downloadFiles = dlv(page, "download.download")?.map((download) => ({
@@ -22,7 +31,12 @@ const Component = (props) => {
 
   return (
     <>
-      <SEO title={"Downloads"} />
+      <SEO
+        title={seoTitle || title}
+        description={pageDescription}
+        image={socialGraphImage?.sourceUrl}
+        seoCanonical={seoCanonical}
+      />
       <Layout>
         <div className="bg-gradient-green-full">
           <div className="container min-h-[500px] flex gap-10 flex-col justify-center items-center">
@@ -97,6 +111,14 @@ Component.query = gql`
     $asPreview: Boolean = false
   ) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      pageSettings {
+        seoTitle
+        description
+        seoCanonical 
+        socialGraphImage {
+          sourceUrl
+        }
+      }
       title
       content
       download{

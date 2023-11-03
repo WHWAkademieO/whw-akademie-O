@@ -14,10 +14,23 @@ const Component = props => {
 
   const hero = props?.data?.page?.editorBlocks[0]?.attributes;
   const textBlock = props?.data?.page?.editorBlocks[1];
- 
+  const {
+    seoTitle,
+    description: pageDescription,
+    seoCanonical,
+    socialGraphImage,
+  } = props?.data?.page?.pageSettings;
+  const { title } = props?.data?.page ?? {
+    title: "",
+  };
   return (
     <div>
-      <SEO title={"Suche"} />
+      <SEO
+        title={seoTitle || title}
+        description={pageDescription}
+        image={socialGraphImage?.sourceUrl}
+        seoCanonical={seoCanonical}
+      />
       <Layout>
         {hero && (
           <Hero
@@ -48,6 +61,15 @@ Component.query = gql`
   {
     page(id: "suche", idType: URI) {
       id
+      title
+      pageSettings {
+        seoTitle
+        description
+        seoCanonical 
+        socialGraphImage {
+          sourceUrl
+        }
+      }
       editorBlocks {
         ... on CreateBlockHeroBlocks {
           attributes {

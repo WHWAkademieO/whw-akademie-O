@@ -12,10 +12,23 @@ import { SEO } from "@/components";
 const Component = (props) => {
   const posts = props?.data?.posts?.nodes;
   const hero = props?.data?.page?.editorBlocks[0]?.attributes;
-
+  const {
+    seoTitle,
+    description: pageDescription,
+    seoCanonical,
+    socialGraphImage,
+  } = props?.data?.page?.pageSettings;
+  const { title } = props?.data?.page ?? {
+    title: "",
+  };
   return (
     <div>
-      <SEO title={"Aktuelles"} />
+      <SEO
+        title={seoTitle || title}
+        description={pageDescription}
+        image={socialGraphImage?.sourceUrl}
+        seoCanonical={seoCanonical}
+      />
       <Layout>
         {hero && (
           <Hero
@@ -69,6 +82,15 @@ Component.query = gql`
   {
     page(id: "aktuelles", idType: URI) {
       id
+      title
+      pageSettings {
+        seoTitle
+        description
+        seoCanonical 
+        socialGraphImage {
+          sourceUrl
+        }
+      }
       editorBlocks {
         ... on CreateBlockHeroBlocks {
           apiVersion
