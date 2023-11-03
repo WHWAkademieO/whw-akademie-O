@@ -18,15 +18,17 @@ const SEO = ({
   const {
     GlobalSEO: { openGraphImage, robotsMeta },
     siteSettings: { siteLogo },
+    siteTitle:{siteTitle}
   } = data?.siteSettings;
 
   const canonicalUrl = data?.siteSettings
     ? `${data?.siteSettings?.siteSettings.siteUrl}${router.asPath}`
     : null;
 
+  const SITE_TITLE = siteTitle || "WHW AKADEMIE !"
   const pageTitle = data?.siteSettings?.siteSettings?.title || title;
   const seo = {
-    title: `WHW AKADEMIE O! - ${pageTitle}`,
+    title: ` ${SITE_TITLE} - ${pageTitle}`,
     description: description,
     image: image || openGraphImage?.sourceUrl,
     logo: siteLogo?.sourceUrl || "/logo.ico",

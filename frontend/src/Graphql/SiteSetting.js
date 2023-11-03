@@ -3,7 +3,13 @@ import { gql } from "@apollo/client";
 export const siteSettingQuery = gql`
   query GetPageData {
     siteSettings {
+
+      siteTitle {
+        siteTitle 
+      }
+
       siteSettings {
+       
         siteUrl
         fieldGroupName
         title
