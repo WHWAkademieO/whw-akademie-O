@@ -30,7 +30,7 @@ const FeatureNew = (props) => {
         // reverse={reverse}
         date={featuredNewObject.date}
         title={featuredNewObject?.title?.rendered}
-        content={featuredNewObject?.content?.rendered}
+        content={null}
       />
       {listNews && <ImageContents data={listNews} />}
     </div>
