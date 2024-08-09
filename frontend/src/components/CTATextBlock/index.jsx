@@ -4,6 +4,7 @@ import Link from "next/link";
 import { gql } from "@apollo/client";
 import { generateJsonString } from "@/utils/helpers";
 import { clsx } from "clsx";
+import { urlTransform } from "../../../function/utils";
 
 const CtaTextBlock = ({ attributes }) => {
   const { title, content, dot, listCta } = attributes ?? {
@@ -47,7 +48,7 @@ const CtaTextBlock = ({ attributes }) => {
                   color: item?.textColor,
                 }}
                 className="py-20 px-2 text-center text-xl lg:text-4xl font-bold uppercase hover:-translate-y-2 transition-all duration-500"
-                href={item?.href?.title || "#"}
+                href={urlTransform(item?.href?.title) || "#"}
                 key={index}
               >
                 {item?.title}

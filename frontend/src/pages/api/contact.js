@@ -4,6 +4,7 @@ import thankyouText from "../../../src/data/thankyou.json";
 import moment from "moment";
 import { getEmailSetting } from "@/functions/prevBuildUtilities";
 import { EMAIL_EVENT_TYPE, EMAIL_ROOM_BOOKING_TYPE } from "@/constant";
+
 export default async function handler(req, res) {
   const publicKey = process.env.MAILJET_KEY_PUBLIC;
   const privateKey = process.env.MAILJET_KEY_PRIVATE;
@@ -44,7 +45,7 @@ export default async function handler(req, res) {
       const { Data } = result.body;
       return Data;
     })
-    .catch(e => console.log(err));
+    .catch(err => console.log(err));
 
   // console.log(senders);
   const idx = senders.findIndex(ele => {
